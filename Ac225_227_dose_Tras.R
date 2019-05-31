@@ -99,7 +99,7 @@ mAverage225errortras = cbind(mminus225tras,mplus225tras[3])
 mAverage227errortras = cbind(mminus227tras,mplus227tras[3])
 mOver225errortras = cbind(mminusover225tras,mplusover225tras[3])
 
-plot225scale = c(1E-05, 1E-03, 1E-01, 1E1)
+plot225scale = c(1E-06, 1E-04, 1E-02, 1E0, 1E2)
 
 plot225tras = ggplot()+ 
   geom_line(data=mAverage225tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -113,7 +113,7 @@ plot225tras = ggplot()+
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
   
-  scale_y_log10(breaks=plot225scale)+#breaks=c(lseq(0.000001,100,9)))+
+  scale_y_log10(limits = c(min(plot225scale),max(plot225scale)), breaks=plot225scale)+#breaks=c(lseq(0.000001,100,9)))+
   theme_bw() +
   theme(legend.position="none",plot.margin = unit(c(0.75,0.75,0.75,0.75), "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
@@ -124,7 +124,7 @@ plot225tras = ggplot()+
   #+
   #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plot227scales = c(1E-07,1E-04,1E-01,1E2)
+plot227scales = c(1E-08,1E-06,1E-4,1E-2,1E0,1E2)
 
 plot227tras = ggplot()+ 
   geom_line(data=mAverage227tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -133,12 +133,12 @@ plot227tras = ggplot()+
   
   scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
-  scale_x_log10(breaks=plot227scales)+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
+  scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
   annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
   
-  scale_y_log10()+#breaks=c(lseq(0.000001,100,9)))+
+  scale_y_log10(limits = c(min(plot227scales),max(plot227scales)), breaks=plot227scales)+#breaks=c(lseq(0.000001,100,9)))+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(c(0.75,0.75,0.75,0.75), "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
@@ -148,21 +148,21 @@ plot227tras = ggplot()+
         axis.text.x=element_text(colour="black"))#+
   #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plotover225scale=c(1E-04,1E-02,1E0,1E2,1E4)
+plotover225scale=c(1E-05,1E-02,1E1,1E4)
 
 plotover225tras = ggplot()+ 
-  geom_line(data=mOver225tras, aes(x=times, y=values, color=Organs), size=2, alpha=1)+
+  geom_line(data=mOver225tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
   geom_ribbon(data=mOver225errortras, aes(x=times, ymin=valuesminus,  ymax=valuesplus, fill = Organs), alpha = 0.1)+
   
   
   scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
-  scale_x_log10(breaks=plotover225scale)+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
+  scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
   annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
   
-  scale_y_log10()+#breaks=c(lseq(0.0001,100,7)))+
+  scale_y_log10(limits = c(min(plotover225scale),max(plotover225scale)), breaks=plotover225scale)+#breaks=c(lseq(0.0001,100,7)))+
   theme_bw() +
   theme(legend.position="right", plot.margin = unit(c(0.75,0.75,0.75,0.75), "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
