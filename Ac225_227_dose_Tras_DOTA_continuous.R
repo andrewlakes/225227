@@ -114,11 +114,11 @@ plot225tras = ggplot()+
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
   scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
-  annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
+  annotation_logticks(base = 10, sides = "b", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
   
-  scale_y_log10(limits = c(min(plot225scale),max(plot225scale)), breaks=plot225scale)+#breaks=c(lseq(0.000001,100,9)))+
+  scale_y_continuous()+#limits = c(min(plot225scale),max(plot225scale)), breaks=plot225scale)+#breaks=c(lseq(0.000001,100,9)))+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
@@ -140,11 +140,11 @@ plot227tras = ggplot()+
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
   scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
-  annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
+  annotation_logticks(base = 10, sides = "b", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
   
-  scale_y_log10(limits = c(min(plot227scales),max(plot227scales)), breaks=plot227scales)+#breaks=c(lseq(0.000001,100,9)))+
+  scale_y_continuous()+#limits = c(min(plot227scales),max(plot227scales)), breaks=plot227scales)+#breaks=c(lseq(0.000001,100,9)))+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
@@ -164,11 +164,11 @@ plotover225tras = ggplot()+
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
   scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
-  annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
+  annotation_logticks(base = 10, sides = "b", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
   
-  scale_y_log10(limits = c(min(plotover225scale),max(plotover225scale)), breaks=plotover225scale)+#breaks=c(lseq(0.0001,100,7)))+
+  scale_y_continuous()+#limits = c(min(plotover225scale),max(plotover225scale)), breaks=plotover225scale)+#breaks=c(lseq(0.0001,100,7)))+
   theme_bw() +
   theme(legend.position="right", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
@@ -288,11 +288,11 @@ plot225Dota = ggplot()+
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
   scale_x_log10()+#breaks=c()0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
-  annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
+  annotation_logticks(base = 10, sides = "b", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
   
-  scale_y_log10(limits = c(min(plot225scale),max(plot225scale)),breaks=plot225scale)+#breaks=c(lseq(0.000001,100,9)))+
+  scale_y_continuous()+#limits = c(min(plot225scale),max(plot225scale)),breaks=plot225scale)+#breaks=c(lseq(0.000001,100,9)))+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
@@ -315,11 +315,11 @@ plot227Dota = ggplot()+
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
   scale_x_log10()+#breaks=c()0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
-  annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
+  annotation_logticks(base = 10, sides = "b", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
   
-  scale_y_log10(limits = c(min(plot227scales),max(plot227scales)), breaks=plot227scales)+#breaks=c(lseq(0.000001,100,9)))+
+  scale_y_continuous()+#limits = c(min(plot227scales),max(plot227scales)), breaks=plot227scales)+#breaks=c(lseq(0.000001,100,9)))+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
@@ -340,11 +340,11 @@ plotover225Dota = ggplot()+
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
   scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
-  annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
+  annotation_logticks(base = 10, sides = "b", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
   
-  scale_y_log10(limits = c(min(plotover225scale),max(plotover225scale)), breaks=plotover225scale)+#breaks=c(#lseq(0.0001,100,7)))+
+  scale_y_continuous()+#limits = c(min(plotover225scale),max(plotover225scale)), breaks=plotover225scale)+#breaks=c(#lseq(0.0001,100,7)))+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
