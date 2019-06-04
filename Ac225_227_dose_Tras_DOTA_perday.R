@@ -230,7 +230,7 @@ plotover225tras = ggplot()+
 #grid.arrange(arrangeGrob(plot225tras, plot227tras, ncol=2), arrangeGrob(plotover225tras, ncol=1))
 
 
-plotday225scale=c(1E-05,1E-02,1E1,1E4)
+plotday225scale=c(1E-07,1E-04,1E-01,1E2)
 
 plotday225tras = ggplot()+ 
   geom_line(data=mday225tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -256,7 +256,7 @@ plotday225tras = ggplot()+
   guides(fill=guide_legend(nrow=2,byrow=TRUE))
 #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plotday227scale=c(1E-05,1E-02,1E1,1E4)
+plotday227scale=c(1E-07,1E-04,1E-01,1E2)
 
 plotday227tras = ggplot()+ 
   geom_line(data=mday227tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -487,7 +487,7 @@ plotover225Dota = ggplot()+
 
 
 
-plotday225scale=c(1E-05,1E-02,1E1,1E4)
+plotday225scale=c(1E-07,1E-04,1E-01,1E2)
 
 #Ratio Dose (Ac-227/Ac-225)-DOTA-Dota
 plotday225Dota = ggplot()+ 
@@ -515,7 +515,7 @@ plotday225Dota = ggplot()+
 
 
 
-plotday227scale=c(1E-05,1E-02,1E1,1E4)
+plotday227scale=c(1E-07,1E-04,1E-01,1E2)
 
 #Ratio Dose (Ac-227/Ac-227)-DOTA-Dota
 plotday227Dota = ggplot()+ 
