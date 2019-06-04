@@ -16,6 +16,8 @@ library(tidyr)
 library(GenKern)
 library(xlsx)
 library(ggpubr)
+library(grid)
+
 
 columnnamestras = c("Days",	"Blood",	"Thymus",	"Heart",	"Lungs",	"Kidneys",	"Spleen",	"Liver",	"ART",	"Carcass",	"Tumor")
 
@@ -54,22 +56,23 @@ minusover225tras = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.
 plusover225tras = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
           sheetIndex = 10))
 
-day225tras = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
+#convert per day from centiGray in excel
+day225tras = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
                                    sheetIndex = 11))
 
-minusday225tras = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
+minusday225tras = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
                                         sheetIndex = 12))
 
-plusday225tras = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
+plusday225tras = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
                                        sheetIndex = 13))
 
-day227tras = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
+day227tras = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
                                   sheetIndex = 14))
 
-minusday227tras = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
+minusday227tras = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
                                        sheetIndex = 15))
 
-plusday227tras = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
+plusday227tras = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_Tras_225227.xlsx",
                                       sheetIndex = 16))
 
 
@@ -91,6 +94,7 @@ colnames(minusday225tras) = columnnamestras
 colnames(plusday225tras) = columnnamestras
 colnames(minusday227tras) = columnnamestras
 colnames(plusday227tras) = columnnamestras
+
 
 
 
@@ -216,7 +220,7 @@ plotover225tras = ggplot()+
   
   scale_y_log10(limits = c(min(plotover225scale),max(plotover225scale)), breaks=plotover225scale)+#breaks=c(lseq(0.0001,100,7)))+
   theme_bw() +
-  theme(legend.position="right", plot.margin = unit(margins, "cm"))+
+  theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   labs(y=element_blank(), x = "Time (days)", color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
@@ -230,7 +234,7 @@ plotover225tras = ggplot()+
 #grid.arrange(arrangeGrob(plot225tras, plot227tras, ncol=2), arrangeGrob(plotover225tras, ncol=1))
 
 
-plotday225scale=c(1E-07,1E-04,1E-01,1E2)
+plotday225scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
 
 plotday225tras = ggplot()+ 
   geom_line(data=mday225tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -239,7 +243,7 @@ plotday225tras = ggplot()+
   
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
-  scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
+  scale_x_log10(breaks=c(1,100,10000))+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
   annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
@@ -256,7 +260,7 @@ plotday225tras = ggplot()+
   guides(fill=guide_legend(nrow=2,byrow=TRUE))
 #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plotday227scale=c(1E-07,1E-04,1E-01,1E2)
+plotday227scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
 
 plotday227tras = ggplot()+ 
   geom_line(data=mday227tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -265,7 +269,7 @@ plotday227tras = ggplot()+
   
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
-  scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
+  scale_x_log10(breaks=c(1,100,10000))+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
   annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
@@ -323,22 +327,23 @@ minusover225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx"
 plusover225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                        sheetIndex = 10))
 
-day225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+#convert per day from centiGray in excel
+day225Dota = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                    sheetIndex = 11))
 
-minusday225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+minusday225Dota = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                         sheetIndex = 12))
 
-plusday225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+plusday225Dota = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                        sheetIndex = 13))
 
-day227Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+day227Dota = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                    sheetIndex = 14))
 
-minusday227Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+minusday227Dota = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                         sheetIndex = 15))
 
-plusday227Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+plusday227Dota = cbind(Days,0.01*read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                        sheetIndex = 16))
 
 colnames(Average225Dota) = columnnamesDota
@@ -357,6 +362,11 @@ colnames(minusday225Dota) = columnnamesDota
 colnames(plusday225Dota) = columnnamesDota
 colnames(minusday227Dota) = columnnamesDota
 colnames(plusday227Dota) = columnnamesDota
+
+
+
+
+
 
 #melt
 
@@ -487,7 +497,7 @@ plotover225Dota = ggplot()+
 
 
 
-plotday225scale=c(1E-07,1E-04,1E-01,1E2)
+plotday225scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
 
 #Ratio Dose (Ac-227/Ac-225)-DOTA-Dota
 plotday225Dota = ggplot()+ 
@@ -497,7 +507,7 @@ plotday225Dota = ggplot()+
   
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
-  scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
+  scale_x_log10(breaks=c(1,100,10000))+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
   annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
@@ -515,7 +525,7 @@ plotday225Dota = ggplot()+
 
 
 
-plotday227scale=c(1E-07,1E-04,1E-01,1E2)
+plotday227scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
 
 #Ratio Dose (Ac-227/Ac-227)-DOTA-Dota
 plotday227Dota = ggplot()+ 
@@ -525,7 +535,7 @@ plotday227Dota = ggplot()+
   
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
-  scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
+  scale_x_log10(breaks=c(1,100,10000))+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
   annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
                       short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
                       colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
@@ -544,6 +554,42 @@ plotday227Dota = ggplot()+
 #plot225tras, plot227tras, ncol=2), arrangeGrob(plotover225tras, ncol=1))
 
 #grid.arrange(arrangeGrob(plot225Dota, plot225tras, plot227Dota, plot227tras, plotover225Dota, plotover225tras, ncol=2))
-ggarrange(plot225Dota, plot225tras, plot227Dota, plot227tras, ncol=2, nrow=2, common.legend = TRUE, legend="bottom")
-ggarrange(plotday225Dota, plotday225tras, plotday227Dota, plotday227tras, plotover225Dota, plotover225tras, ncol=2, nrow=3, common.legend = TRUE, legend="bottom")
+#grid.arrange(arrangeGrob(plot225Dota, plot225tras, ncol=2), arrangeGrob(plot227Dota, plot227tras+theme(legend.position="bottom"), ncol=1))
 
+
+#to create legend ONLY
+
+plot225tras1 = ggplot()+ 
+  geom_line(data=mAverage225tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
+  geom_ribbon(data=mAverage225errortras, aes(x=times, ymin=valuesminus,  ymax=valuesplus, fill = Organs), alpha = 0.1)+
+  #ggtitle("DOTA-Trastuzumab")+
+  
+  #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
+  
+  #scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000))+
+  #annotation_logticks(base = 10, sides = "bl", scaled = TRUE,
+   #                   short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
+    #                  colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
+  
+  #scale_y_log10(limits = c(min(plot225scale),max(plot225scale)), breaks=plot225scale)+#breaks=c(lseq(0.000001,100,9)))+
+  theme_bw() +
+  theme(legend.position="bottom", plot.margin = unit(margins, "cm"))+
+  #theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  #labs(y=element_blank(), x=element_blank(), color="Organs")+
+  theme(text = element_text(size=18, face = "bold"),
+        axis.text.y=element_text(colour="black"),
+        axis.text.x=element_text(colour="black"))
+#+
+#guides(shape=guide_legend(override.aes = list(size=3)))
+
+
+#create legend
+legend <- get_legend(plot225tras1)
+#as_ggplot(legend)
+
+grid.arrange(arrangeGrob(plot225Dota, plot225tras, plot227Dota, plot227tras, ncol=2), arrangeGrob(legend, ncol=1), heights=c(8,1))
+grid.arrange(arrangeGrob(plotday225Dota, plotday225tras, plotday227Dota, plotday227tras, plotover225Dota, plotover225tras, ncol=2), arrangeGrob(as_ggplot(legend), ncol=1), heights=c(8,1))
+
+
+#ggarrange(plot225Dota, plot225tras, plot227Dota, plot227tras, ncol=2, nrow=2)
+#ggarrange(plotday225Dota, plotday225tras, plotday227Dota, plotday227tras, plotover225Dota, plotover225tras, ncol=2, nrow=3, common.legend = TRUE, legend="bottom")
