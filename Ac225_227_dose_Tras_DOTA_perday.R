@@ -194,7 +194,7 @@ plot227tras = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(y=element_blank(), x=element_blank(), color="Organs")+
+  labs(y=element_blank(), x="Time (days)", color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
         axis.text.x=element_text(colour="black"))#+
@@ -235,7 +235,7 @@ plotday225scale=c(1E-05,1E-02,1E1,1E4)
 plotday225tras = ggplot()+ 
   geom_line(data=mday225tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
   geom_ribbon(data=mday225errortras, aes(x=times, ymin=valuesminus,  ymax=valuesplus, fill = Organs), alpha = 0.1)+
-  
+  ggtitle("DOTA-Trastuzumab")+
   
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
@@ -248,10 +248,11 @@ plotday225tras = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(y=element_blank(), x = "Time (days)", color="Organs")+
+  labs(y=element_blank(), x = element_blank(), color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
-        axis.text.x=element_text(colour="black"))+
+        axis.text.x=element_text(colour="black"),
+        plot.title = element_text(hjust = 0.5, size=18))+
   guides(fill=guide_legend(nrow=2,byrow=TRUE))
 #guides(shape=guide_legend(override.aes = list(size=3)))
 
@@ -273,7 +274,7 @@ plotday227tras = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(y=element_blank(), x = "Time (days)", color="Organs")+
+  labs(y=element_blank(), x = element_blank(), color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
         axis.text.x=element_text(colour="black"))+
@@ -322,22 +323,22 @@ minusover225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx"
 plusover225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                        sheetIndex = 10))
 
-Over225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+day225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                    sheetIndex = 11))
 
-minusover225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+minusday225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                         sheetIndex = 12))
 
-plusover225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+plusday225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                        sheetIndex = 13))
 
-Over225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+day227Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                    sheetIndex = 14))
 
-minusover225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+minusday227Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                         sheetIndex = 15))
 
-plusover225Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
+plusday227Dota = cbind(Days,read.xlsx("2019_5_31_import_to_R_DOTA_225227.xlsx",
                                        sheetIndex = 16))
 
 colnames(Average225Dota) = columnnamesDota
@@ -383,12 +384,11 @@ colnames(mminusover225Dota) = c("times", "Organs", "valuesminus")
 mplusover225Dota = melt(plusover225Dota, id="Days")
 colnames(mplusover225Dota) = c("times", "Organs", "valuesplus")
 
-
 mday225Dota = melt(day225Dota, id="Days")
 colnames(mday225Dota) = c("times", "Organs", "values")
 
 mminusday225Dota = melt(minusday225Dota, id="Days")
-colnames(mminusover225Dota) = c("times", "Organs", "valuesminus")
+colnames(mminusday225Dota) = c("times", "Organs", "valuesminus")
 mplusday225Dota = melt(plusday225Dota, id="Days")
 colnames(mplusday225Dota) = c("times", "Organs", "valuesplus")
 
@@ -396,7 +396,7 @@ mday227Dota = melt(day227Dota, id="Days")
 colnames(mday227Dota) = c("times", "Organs", "values")
 
 mminusday227Dota = melt(minusday227Dota, id="Days")
-colnames(mminusover227Dota) = c("times", "Organs", "valuesminus")
+colnames(mminusday227Dota) = c("times", "Organs", "valuesminus")
 mplusday227Dota = melt(plusday227Dota, id="Days")
 colnames(mplusday227Dota) = c("times", "Organs", "valuesplus")
 
@@ -454,7 +454,7 @@ plot227Dota = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(x=element_blank(), y = "Ac-227 Dose (Gy)", color="Organs")+
+  labs(x="Time (days)", y = "Ac-227 Dose (Gy)", color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
         axis.text.x=element_text(colour="black"))#+
@@ -493,7 +493,7 @@ plotday225scale=c(1E-05,1E-02,1E1,1E4)
 plotday225Dota = ggplot()+ 
   geom_line(data=mday225Dota, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
   geom_ribbon(data=mday225errorDota, aes(x=times, ymin=valuesminus,  ymax=valuesplus, fill = Organs), alpha = 0.1)+
-  
+  ggtitle("DOTA")+
   
   #scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
   
@@ -506,10 +506,11 @@ plotday225Dota = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(x = "Time (days)", y = "Ac-227/Ac-225", color="Organs")+
+  labs(x = element_blank(), y = "Ac-225 (Gy/day)", color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
-        axis.text.x=element_text(colour="black"))+
+        axis.text.x=element_text(colour="black"),
+        plot.title = element_text(hjust = 0.5, size=18))+
   guides(shape=guide_legend(override.aes = list(size=3)))
 
 
@@ -533,7 +534,7 @@ plotday227Dota = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(x = "Time (days)", y = "Ac-227/Ac-225", color="Organs")+
+  labs(x = element_blank(), y = "Ac-227 (Gy/day)", color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
         axis.text.x=element_text(colour="black"))+
@@ -543,5 +544,6 @@ plotday227Dota = ggplot()+
 #plot225tras, plot227tras, ncol=2), arrangeGrob(plotover225tras, ncol=1))
 
 #grid.arrange(arrangeGrob(plot225Dota, plot225tras, plot227Dota, plot227tras, plotover225Dota, plotover225tras, ncol=2))
-ggarrange(plot225Dota, plot225tras, plot227Dota, plot227tras, plotday225Dota, plotday225tras, plotday227Dota, plotday227tras, plotover225Dota, plotover225tras, ncol=2, nrow=4, common.legend = TRUE, legend="bottom")
+ggarrange(plot225Dota, plot225tras, plot227Dota, plot227tras, ncol=2, nrow=2, common.legend = TRUE, legend="bottom")
+ggarrange(plotday225Dota, plotday225tras, plotday227Dota, plotday227tras, plotover225Dota, plotover225tras, ncol=2, nrow=3, common.legend = TRUE, legend="bottom")
 
