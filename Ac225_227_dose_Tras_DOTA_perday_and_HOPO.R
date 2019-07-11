@@ -18,6 +18,7 @@ library(xlsx)
 library(ggpubr)
 library(grid)
 
+unifiedScale1 = c(1E-08, 1E-04, 1E-0, 1E4)
 
 #subtract positive error, and add negative error! since cubic spline interp
 
@@ -100,16 +101,16 @@ colnames(plusday227tras) = columnnamestras
 
 
 #remove negative error values for logarithmic plotting
-minus225tras[minus225tras < 1E-06] = 1E-06
-plus225tras[plus225tras < 1E-06] = 1E-06
+minus225tras[minus225tras < 1E-08] = 1E-08
+plus225tras[plus225tras < 1E-08] = 1E-08
 minus227tras[minus227tras < 1E-08] = 1E-08
 plus227tras[plus227tras < 1E-08] = 1E-08
-minusover225tras[minusover225tras < 1E-05] = 1E-05
-plusover225tras[plusover225tras < 1E-05] = 1E-05
-minusday225tras[minusday225tras < 1E-09] = 1E-09
-plusday225tras[plusday225tras < 1E-09] = 1E-09
-minusday227tras[minusday227tras < 1E-09] = 1E-09
-plusday227tras[plusday227tras < 1E-09] = 1E-09
+minusover225tras[minusover225tras < 1E-08] = 1E-08
+plusover225tras[plusover225tras < 1E-08] = 1E-08
+minusday225tras[minusday225tras < 1E-08] = 1E-08
+plusday225tras[plusday225tras < 1E-08] = 1E-08
+minusday227tras[minusday227tras < 1E-08] = 1E-08
+plusday227tras[plusday227tras < 1E-08] = 1E-08
 
 
 #melt
@@ -168,7 +169,7 @@ mOver225errortras = cbind(mminusover225tras,mplusover225tras[3])
 mday225errortras = cbind(mminusday225tras,mplusday225tras[3])
 mday227errortras = cbind(mminusday227tras,mplusday227tras[3])
 
-plot225scale = c(1E-06, 1E-04, 1E-02, 1E0, 1E2)
+plot225scale = unifiedScale1
 
 plot225tras = ggplot()+ 
   geom_line(data=mAverage225tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -194,7 +195,8 @@ plot225tras = ggplot()+
   #+
   #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plot227scales = c(1E-08,1E-06,1E-4,1E-2,1E0,1E2)
+#plot227scales = c(1E-08,1E-08,1E-4,1E-2,1E0,1E2)
+plot227scales = unifiedScale1
 
 plot227tras = ggplot()+ 
   geom_line(data=mAverage227tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -218,7 +220,7 @@ plot227tras = ggplot()+
         axis.text.x=element_text(colour="black"))#+
   #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plotover225scale=c(1E-05,1E-02,1E1,1E4)
+plotover225scale = unifiedScale1
 
 plotover225tras = ggplot()+ 
   geom_line(data=mOver225tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -248,7 +250,7 @@ plotover225tras = ggplot()+
 #grid.arrange(arrangeGrob(plot225tras, plot227tras, ncol=2), arrangeGrob(plotover225tras, ncol=1))
 
 
-plotday225scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
+plotday225scale = unifiedScale1
 
 plotday225tras = ggplot()+ 
   geom_line(data=mday225tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -274,7 +276,7 @@ plotday225tras = ggplot()+
   guides(fill=guide_legend(nrow=2,byrow=TRUE))
 #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plotday227scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
+plotday227scale = unifiedScale1
 
 plotday227tras = ggplot()+ 
   geom_line(data=mday227tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -380,16 +382,16 @@ colnames(plusday227Dota) = columnnamesDota
 
 
 #remove negative error values for logarithmic plotting
-minus225Dota[minus225Dota < 1E-06] = 1E-06
-plus225Dota[plus225Dota < 1E-06] = 1E-06
+minus225Dota[minus225Dota < 1E-08] = 1E-08
+plus225Dota[plus225Dota < 1E-08] = 1E-08
 minus227Dota[minus227Dota < 1E-08] = 1E-08
 plus227Dota[plus227Dota < 1E-08] = 1E-08
-minusover225Dota[minusover225Dota < 1E-05] = 1E-05
-plusover225Dota[plusover225Dota < 1E-05] = 1E-05
-minusday225Dota[minusday225Dota < 1E-09] = 1E-09
-plusday225Dota[plusday225Dota < 1E-09] = 1E-09
-minusday227Dota[minusday227Dota < 1E-09] = 1E-09
-plusday227Dota[plusday227Dota < 1E-09] = 1E-09
+minusover225Dota[minusover225Dota < 1E-08] = 1E-08
+plusover225Dota[plusover225Dota < 1E-08] = 1E-08
+minusday225Dota[minusday225Dota < 1E-08] = 1E-08
+plusday225Dota[plusday225Dota < 1E-08] = 1E-08
+minusday227Dota[minusday227Dota < 1E-08] = 1E-08
+plusday227Dota[plusday227Dota < 1E-08] = 1E-08
 
 
 
@@ -445,7 +447,7 @@ mOver225errorDota = cbind(mminusover225Dota,mplusover225Dota[3])
 mday225errorDota = cbind(mminusday225Dota,mplusday225Dota[3])
 mday227errorDota = cbind(mminusday227Dota,mplusday227Dota[3])
 
-plot225scale = c(1E-06, 1E-04, 1E-02, 1E0, 1E2)
+#plot225scale = c(1E-08, 1E-04, 1E-02, 1E0, 1E2)
 
 #200 nCi Ac-225-DOTA-Dota Dose (Gy)
 plot225Dota = ggplot()+ 
@@ -472,7 +474,7 @@ plot225Dota = ggplot()+
 #+
 #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plot227scales = c(1E-08,1E-06,1E-4,1E-2,1E0,1E2)
+#plot227scales = c(1E-08,1E-08,1E-4,1E-2,1E0,1E2)
 
 #20 nCi Ac-227-DOTA-Dota Dose (Gy)
 plot227Dota = ggplot()+ 
@@ -497,7 +499,7 @@ plot227Dota = ggplot()+
         axis.text.x=element_text(colour="black"))#+
 #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plotover225scale=c(1E-05,1E-02,1E1,1E4)
+#plotover225scale=c(1E-08,1E-02,1E1,1E4)
 
 #Ratio Dose (Ac-227/Ac-225)-DOTA-Dota
 plotover225Dota = ggplot()+ 
@@ -524,7 +526,7 @@ plotover225Dota = ggplot()+
 
 
 
-plotday225scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
+#plotday225scale=c(1E-08,1E-07,1E-5,1E-3,1E-1,1E1)
 
 #Ratio Dose (Ac-227/Ac-225)-DOTA-Dota
 plotday225Dota = ggplot()+ 
@@ -552,7 +554,7 @@ plotday225Dota = ggplot()+
 
 
 
-plotday227scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
+#plotday227scale=c(1E-08,1E-07,1E-5,1E-3,1E-1,1E1)
 
 #Ratio Dose (Ac-227/Ac-227)-DOTA-Dota
 plotday227Dota = ggplot()+ 
@@ -664,16 +666,16 @@ colnames(plusday227HOPO) = columnnamesHOPO
 
 
 #remove negative error values for logarithmic plotting
-minus225HOPO[minus225HOPO < 1E-06] = 1E-06
-plus225HOPO[plus225HOPO < 1E-06] = 1E-06
+minus225HOPO[minus225HOPO < 1E-08] = 1E-08
+plus225HOPO[plus225HOPO < 1E-08] = 1E-08
 minus227HOPO[minus227HOPO < 1E-08] = 1E-08
 plus227HOPO[plus227HOPO < 1E-08] = 1E-08
-minusover225HOPO[minusover225HOPO < 1E-05] = 1E-05
-plusover225HOPO[plusover225HOPO < 1E-05] = 1E-05
-minusday225HOPO[minusday225HOPO < 1E-09] = 1E-09
-plusday225HOPO[plusday225HOPO < 1E-09] = 1E-09
-minusday227HOPO[minusday227HOPO < 1E-09] = 1E-09
-plusday227HOPO[plusday227HOPO < 1E-09] = 1E-09
+minusover225HOPO[minusover225HOPO < 1E-08] = 1E-08
+plusover225HOPO[plusover225HOPO < 1E-08] = 1E-08
+minusday225HOPO[minusday225HOPO < 1E-08] = 1E-08
+plusday225HOPO[plusday225HOPO < 1E-08] = 1E-08
+minusday227HOPO[minusday227HOPO < 1E-08] = 1E-08
+plusday227HOPO[plusday227HOPO < 1E-08] = 1E-08
 
 
 
@@ -728,7 +730,7 @@ mOver225errorHOPO = cbind(mminusover225HOPO,mplusover225HOPO[3])
 mday225errorHOPO = cbind(mminusday225HOPO,mplusday225HOPO[3])
 mday227errorHOPO = cbind(mminusday227HOPO,mplusday227HOPO[3])
 
-plot225scale = c(1E-06, 1E-04, 1E-02, 1E0, 1E2)
+#plot225scale = c(1E-08, 1E-04, 1E-02, 1E0, 1E2)
 
 #200 nCi Ac-225-HOPO-HOPO Dose (Gy)
 plot225HOPO = ggplot()+ 
@@ -755,7 +757,7 @@ plot225HOPO = ggplot()+
 #+
 #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plot227scales = c(1E-08,1E-06,1E-4,1E-2,1E0,1E2)
+#plot227scales = c(1E-08,1E-08,1E-4,1E-2,1E0,1E2)
 
 #20 nCi Ac-227-HOPO-HOPO Dose (Gy)
 plot227HOPO = ggplot()+ 
@@ -780,7 +782,7 @@ plot227HOPO = ggplot()+
         axis.text.x=element_text(colour="black"))#+
 #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plotover225scale=c(1E-05,1E-02,1E1,1E4)
+#plotover225scale=c(1E-08,1E-02,1E1,1E4)
 
 #Ratio Dose (Ac-227/Ac-225)-HOPO-HOPO
 plotover225HOPO = ggplot()+ 
@@ -807,7 +809,7 @@ plotover225HOPO = ggplot()+
 
 
 
-plotday225scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
+#plotday225scale=c(1E-08,1E-07,1E-5,1E-3,1E-1,1E1)
 
 #Ratio Dose (Ac-227/Ac-225)-HOPO-HOPO
 plotday225HOPO = ggplot()+ 
@@ -835,7 +837,7 @@ plotday225HOPO = ggplot()+
 
 
 
-plotday227scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
+#plotday227scale=c(1E-08,1E-07,1E-5,1E-3,1E-1,1E1)
 
 #Ratio Dose (Ac-227/Ac-227)-HOPO-HOPO
 plotday227HOPO = ggplot()+ 
@@ -907,9 +909,9 @@ plot225tras1 = ggplot()+
 legend <- get_legend(plot225tras1)
 #as_ggplot(legend)
 
-grid.arrange(arrangeGrob(plot225HOPO, plot225Dota, plot225tras, plot227HOPO, plot227Dota, plot227tras, plotover225HOPO, plotover225Dota, plotover225tras, ncol=3), arrangeGrob(legend, ncol=1), heights=c(8,1))
-grid.arrange(arrangeGrob(plotday225HOPO, plotday225Dota, plotday225tras, plotday227HOPO, plotday227Dota, plotday227tras, ncol=3), arrangeGrob(as_ggplot(legend), ncol=1), heights=c(8,1))
+grid.arrange(arrangeGrob(legend, ncol=1), arrangeGrob(plot225HOPO, plot225Dota, plot225tras, plot227HOPO, plot227Dota, plot227tras, plotover225HOPO, plotover225Dota, plotover225tras, ncol=3), heights=c(1,8))
+grid.arrange(arrangeGrob(as_ggplot(legend), ncol=1), arrangeGrob(plotday225HOPO, plotday225Dota, plotday225tras, plotday227HOPO, plotday227Dota, plotday227tras, ncol=3), heights=c(1,8))
 
 
-# grid.arrange(arrangeGrob(plot225Dota, plot225tras, plot227Dota, plot227tras, ncol=2), arrangeGrob(legend, ncol=1), heights=c(8,1))
-# grid.arrange(arrangeGrob(plotday225Dota, plotday225tras, plotday227Dota, plotday227tras, plotover225Dota, plotover225tras, ncol=2), arrangeGrob(as_ggplot(legend), ncol=1), heights=c(8,1))
+# grid.arrange(arrangeGrob(plot225HOPO, plot225Dota, plot225tras, plot227HOPO, plot227Dota, plot227tras, plotover225HOPO, plotover225Dota, plotover225tras, ncol=3), arrangeGrob(legend, ncol=1), heights=c(8,1))
+# grid.arrange(arrangeGrob(plotday225HOPO, plotday225Dota, plotday225tras, plotday227HOPO, plotday227Dota, plotday227tras, ncol=3), arrangeGrob(as_ggplot(legend), ncol=1), heights=c(8,1))
