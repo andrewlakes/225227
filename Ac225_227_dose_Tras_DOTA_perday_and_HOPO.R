@@ -19,6 +19,7 @@ library(ggpubr)
 library(grid)
 
 unifiedScale1 = c(1E-08, 1E-04, 1E-0, 1E4)
+unifiedScale2 = c(1E-11, 1E-07, 1E-03, 1E1)
 
 #subtract positive error, and add negative error! since cubic spline interp
 
@@ -107,10 +108,10 @@ minus227tras[minus227tras < 1E-08] = 1E-08
 plus227tras[plus227tras < 1E-08] = 1E-08
 minusover225tras[minusover225tras < 1E-08] = 1E-08
 plusover225tras[plusover225tras < 1E-08] = 1E-08
-minusday225tras[minusday225tras < 1E-08] = 1E-08
-plusday225tras[plusday225tras < 1E-08] = 1E-08
-minusday227tras[minusday227tras < 1E-08] = 1E-08
-plusday227tras[plusday227tras < 1E-08] = 1E-08
+minusday225tras[minusday225tras < 1E-11] = 1E-11
+plusday225tras[plusday225tras < 1E-11] = 1E-11
+minusday227tras[minusday227tras < 1E-11] = 1E-11
+plusday227tras[plusday227tras < 1E-11] = 1E-11
 
 
 #melt
@@ -250,7 +251,7 @@ plotover225tras = ggplot()+
 #grid.arrange(arrangeGrob(plot225tras, plot227tras, ncol=2), arrangeGrob(plotover225tras, ncol=1))
 
 
-plotday225scale = unifiedScale1
+plotday225scale = unifiedScale2
 
 plotday225tras = ggplot()+ 
   geom_line(data=mday225tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -276,7 +277,7 @@ plotday225tras = ggplot()+
   guides(fill=guide_legend(nrow=2,byrow=TRUE))
 #guides(shape=guide_legend(override.aes = list(size=3)))
 
-plotday227scale = unifiedScale1
+plotday227scale = unifiedScale2
 
 plotday227tras = ggplot()+ 
   geom_line(data=mday227tras, aes(x=times, y=values, color=Organs), size=1, alpha=1)+
@@ -388,10 +389,10 @@ minus227Dota[minus227Dota < 1E-08] = 1E-08
 plus227Dota[plus227Dota < 1E-08] = 1E-08
 minusover225Dota[minusover225Dota < 1E-08] = 1E-08
 plusover225Dota[plusover225Dota < 1E-08] = 1E-08
-minusday225Dota[minusday225Dota < 1E-08] = 1E-08
-plusday225Dota[plusday225Dota < 1E-08] = 1E-08
-minusday227Dota[minusday227Dota < 1E-08] = 1E-08
-plusday227Dota[plusday227Dota < 1E-08] = 1E-08
+minusday225Dota[minusday225Dota < 1E-11] = 1E-11
+plusday225Dota[plusday225Dota < 1E-11] = 1E-11
+minusday227Dota[minusday227Dota < 1E-11] = 1E-11
+plusday227Dota[plusday227Dota < 1E-11] = 1E-11
 
 
 
@@ -526,7 +527,7 @@ plotover225Dota = ggplot()+
 
 
 
-#plotday225scale=c(1E-08,1E-07,1E-5,1E-3,1E-1,1E1)
+#plotday225scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
 
 #Ratio Dose (Ac-227/Ac-225)-DOTA-Dota
 plotday225Dota = ggplot()+ 
@@ -554,7 +555,7 @@ plotday225Dota = ggplot()+
 
 
 
-#plotday227scale=c(1E-08,1E-07,1E-5,1E-3,1E-1,1E1)
+#plotday227scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
 
 #Ratio Dose (Ac-227/Ac-227)-DOTA-Dota
 plotday227Dota = ggplot()+ 
@@ -672,10 +673,10 @@ minus227HOPO[minus227HOPO < 1E-08] = 1E-08
 plus227HOPO[plus227HOPO < 1E-08] = 1E-08
 minusover225HOPO[minusover225HOPO < 1E-08] = 1E-08
 plusover225HOPO[plusover225HOPO < 1E-08] = 1E-08
-minusday225HOPO[minusday225HOPO < 1E-08] = 1E-08
-plusday225HOPO[plusday225HOPO < 1E-08] = 1E-08
-minusday227HOPO[minusday227HOPO < 1E-08] = 1E-08
-plusday227HOPO[plusday227HOPO < 1E-08] = 1E-08
+minusday225HOPO[minusday225HOPO < 1E-11] = 1E-11
+plusday225HOPO[plusday225HOPO < 1E-11] = 1E-11
+minusday227HOPO[minusday227HOPO < 1E-11] = 1E-11
+plusday227HOPO[plusday227HOPO < 1E-11] = 1E-11
 
 
 
@@ -809,7 +810,7 @@ plotover225HOPO = ggplot()+
 
 
 
-#plotday225scale=c(1E-08,1E-07,1E-5,1E-3,1E-1,1E1)
+#plotday225scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
 
 #Ratio Dose (Ac-227/Ac-225)-HOPO-HOPO
 plotday225HOPO = ggplot()+ 
@@ -837,7 +838,7 @@ plotday225HOPO = ggplot()+
 
 
 
-#plotday227scale=c(1E-08,1E-07,1E-5,1E-3,1E-1,1E1)
+#plotday227scale=c(1E-09,1E-07,1E-5,1E-3,1E-1,1E1)
 
 #Ratio Dose (Ac-227/Ac-227)-HOPO-HOPO
 plotday227HOPO = ggplot()+ 
