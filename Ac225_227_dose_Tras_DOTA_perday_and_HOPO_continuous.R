@@ -467,7 +467,7 @@ plot225Dota = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(x=element_blank(), y = element_blank(), color="Organs")+
+  labs(x=element_blank(), y = "Ac-225 Dose (Gy)", color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
         axis.text.x=element_text(colour="black"),
@@ -494,7 +494,7 @@ plot227Dota = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(x=element_blank(), y = element_blank(), color="Organs")+
+  labs(x=element_blank(), y = "Ac-227 Dose (Gy)", color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
         axis.text.x=element_text(colour="black"))#+
@@ -519,7 +519,7 @@ plotover225Dota = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(x = "Time (days)", y = element_blank(), color="Organs")+
+  labs(x = "Time (days)", y = "Ac-227/Ac-225", color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
         axis.text.x=element_text(colour="black"))+
@@ -546,7 +546,7 @@ plotday225Dota = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(x = element_blank(), y = element_blank(), color="Organs")+
+  labs(x = element_blank(), y = "Ac-225 (Gy/day)", color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
         axis.text.x=element_text(colour="black"),
@@ -574,7 +574,7 @@ plotday227Dota = ggplot()+
   theme_bw() +
   theme(legend.position="none", plot.margin = unit(margins, "cm"))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  labs(x = "Time (days)", y = element_blank(), color="Organs")+
+  labs(x = "Time (days)", y = "Ac-227 (Gy/day)", color="Organs")+
   theme(text = element_text(size=18, face = "bold"),
         axis.text.y=element_text(colour="black"),
         axis.text.x=element_text(colour="black"))+
@@ -910,8 +910,23 @@ plot225tras1 = ggplot()+
 legend <- get_legend(plot225tras1)
 #as_ggplot(legend)
 
-grid.arrange(arrangeGrob(legend, ncol=1), arrangeGrob(plot225HOPO, plot225Dota, plot225tras, plot227HOPO, plot227Dota, plot227tras, plotover225HOPO, plotover225Dota, plotover225tras, ncol=3), heights=c(1,8))
-grid.arrange(arrangeGrob(as_ggplot(legend), ncol=1), arrangeGrob(plotday225HOPO, plotday225Dota, plotday225tras, plotday227HOPO, plotday227Dota, plotday227tras, ncol=3), heights=c(1,8))
+
+grid.arrange(arrangeGrob(legend, ncol=1), arrangeGrob(plot225Dota, plot225tras, plot227Dota, plot227tras, plotover225Dota, plotover225tras, ncol=2), heights=c(1,8))
+grid.arrange(arrangeGrob(as_ggplot(legend), ncol=1), arrangeGrob(plotday225HOPO, plotday227HOPO, ncol=1), heights=c(1,8))
+
+
+grid.arrange(arrangeGrob(legend, ncol=1), arrangeGrob(plot225HOPO, plot227HOPO, plotover225HOPO, ncol=1), heights=c(1,8))
+grid.arrange(arrangeGrob(as_ggplot(legend), ncol=1), arrangeGrob(plotday225Dota, plotday225tras, plotday227Dota, plotday227tras, ncol=2), heights=c(1,8))
+
+
+
+##OLD VERSION
+#grid.arrange(arrangeGrob(legend, ncol=1), arrangeGrob(plot225HOPO, plot225Dota, plot225tras, plot227HOPO, plot227Dota, plot227tras, plotover225HOPO, plotover225Dota, plotover225tras, ncol=3), heights=c(1,8))
+#grid.arrange(arrangeGrob(as_ggplot(legend), ncol=1), arrangeGrob(plotday225HOPO, plotday225Dota, plotday225tras, plotday227HOPO, plotday227Dota, plotday227tras, ncol=3), heights=c(1,8))
+
+
+
+
 
 
 # grid.arrange(arrangeGrob(plot225HOPO, plot225Dota, plot225tras, plot227HOPO, plot227Dota, plot227tras, plotover225HOPO, plotover225Dota, plotover225tras, ncol=3), arrangeGrob(legend, ncol=1), heights=c(8,1))
