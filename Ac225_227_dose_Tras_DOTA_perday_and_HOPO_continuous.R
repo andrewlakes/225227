@@ -925,9 +925,3 @@ grid.arrange(arrangeGrob(as_ggplot(legend), ncol=1), arrangeGrob(plotday225Dota,
 #grid.arrange(arrangeGrob(as_ggplot(legend), ncol=1), arrangeGrob(plotday225HOPO, plotday225Dota, plotday225tras, plotday227HOPO, plotday227Dota, plotday227tras, ncol=3), heights=c(1,8))
 
 
-
-
-
-
-# grid.arrange(arrangeGrob(plot225HOPO, plot225Dota, plot225tras, plot227HOPO, plot227Dota, plot227tras, plotover225HOPO, plotover225Dota, plotover225tras, ncol=3), arrangeGrob(legend, ncol=1), heights=c(8,1))
-# grid.arrange(arrangeGrob(plotday225HOPO, plotday225Dota, plotday225tras, plotday227HOPO, plotday227Dota, plotday227tras, ncol=3), arrangeGrob(as_ggplot(legend), ncol=1), heights=c(8,1))
