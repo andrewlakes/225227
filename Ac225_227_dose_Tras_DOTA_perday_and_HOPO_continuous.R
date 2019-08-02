@@ -925,3 +925,66 @@ grid.arrange(arrangeGrob(as_ggplot(legend), ncol=1), arrangeGrob(plotday225Dota,
 #grid.arrange(arrangeGrob(as_ggplot(legend), ncol=1), arrangeGrob(plotday225HOPO, plotday225Dota, plotday225tras, plotday227HOPO, plotday227Dota, plotday227tras, ncol=3), heights=c(1,8))
 
 
+
+
+#isotopic stability post recoil of first alpha
+
+workbook225 = loadWorkbook("plotout225.xlsx")
+workbook227 = loadWorkbook("plotout227.xlsx")
+
+
+ac225 = read.xlsx("plotout225.xlsx",
+                   sheetIndex = 1)
+
+ac225 = ac225[,-1]
+
+ac227 = read.xlsx("plotout227.xlsx",
+                   sheetIndex = 1)
+
+ac227 = ac227[,-1]
+
+
+
+days = ac225[,1]
+
+
+#on an activity basis,
+firstAlphaRatio = cbind(days, ac225[,2]/ac225[,length(ac225)], (ac227[,2]+ac227[,3])/ac227[,length(ac227)])
+
+colnames(firstAlphaRatio) = c('Days', '(Ac-225)/Sum', '(Ac-227+Th-227)/Sum')
+
+firstAlphaRatio = as.data.frame(firstAlphaRatio)
+
+mfirstAlphaRatio = melt(firstAlphaRatio, id="Days")
+colnames(mfirstAlphaRatio) = c("times", "Species", "value")
+
+
+
+
+
+
+
+
+#plot mass generation nmol/min
+plot225 = ggplot(mfirstAlphaRatio, aes(x=times, y=value, by=Species))+
+  geom_point(aes(color=Species, shape=Species), size=1.25, alpha=1, stroke = 1.25)+
+  scale_shape_manual(values = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17))+ 
+  
+  scale_x_log10()+#breaks=c(0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000))+#, labels = scales::number_format(accuracy = 0.01))+
+  annotation_logticks(base = 10, sides = "b", scaled = TRUE,
+                      short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),
+                      colour = "black", size = 0.5, linetype = 1, alpha = 1, color = NULL)+
+  
+  scale_y_continuous()+
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  labs(x = "Time (day)", y = "Decay of Parent to First Alpha / Total Decays", color="Species")+
+  theme(text = element_text(size=18, face = "bold"),
+        axis.text.y=element_text(colour="black"),
+        axis.text.x=element_text(colour="black"),
+        legend.position = c(0.75,0.85))+
+  guides(shape=guide_legend(override.aes = list(size=3)))
+
+
+plot225
+
